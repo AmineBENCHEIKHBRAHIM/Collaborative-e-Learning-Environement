@@ -1,0 +1,79 @@
+package com.sdzee.servlets;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import classes.DatabaseConnection;
+
+/**
+ * Servlet implementation class DisplayProbIndiv
+ */
+@WebServlet("/DisplayProbIndiv")
+public class DisplayProbColl extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	Connection conn;
+	Statement stmt;
+	ResultSet res;
+
+	String query;
+	
+	DatabaseConnection dbconn;
+	
+	List lst = new ArrayList();  
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DisplayProbColl() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		System.out.print(request.getParameter("idgrp"));
+		try
+		{
+			
+			query = "select * from probcoll where idgroupe="+request.getParameter("idgrp");
+			dbconn = new DatabaseConnection();
+			conn = dbconn.setConnection();
+			res = dbconn.getResult(query, conn);
+			
+			request.setAttribute("problist",res);
+			String idgrp = request.getParameter("idgrp");
+			String co = request.getParameter("co");
+			request.setAttribute("idgrp",idgrp);
+			request.setAttribute("co",co);
+				RequestDispatcher rd = request.getRequestDispatcher("/groupeindiv.jsp");
+				rd.forward(request, response);
+			System.out.print("i passed by display prob indiv");
+			   // response.sendRedirect("index2.jsp");
+		}
+		catch(Exception e){}
+		
+		
+		
+	}
+
+}

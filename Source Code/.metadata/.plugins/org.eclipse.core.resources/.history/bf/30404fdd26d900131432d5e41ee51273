@@ -1,0 +1,65 @@
+package Controllers;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import net.sourceforge.stripes.action.RedirectResolution;
+import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.validation.Validate;
+import DAO.ForumBeanManager;
+import Domain.Droit;
+import Domain.Groupe;
+import Domain.Message;
+import Domain.Topic;
+import Domain.Utilisateur;
+
+public class GestiongroupeActionBean extends ForumActionBean {
+	
+	@Validate(required=true)private String nomgroupe;
+	@Validate(required=true)private String description;
+	private Utilisateur uCourant;
+	
+	
+	public String getnomgroupe() {
+		return nomgroupe;
+	}
+
+	public void setnomgroupe(String nomgroupe) {
+		this.nomgroupe = nomgroupe;
+	}
+	
+	public void setuCourant(Utilisateur uCourant) {
+		this.uCourant = uCourant;
+	}
+
+	public Utilisateur getuCourant() {
+		return uCourant;
+	}
+	
+	public Resolution  ajouterGroupe()
+	{
+				
+		ForumBeanManager fbm = new ForumBeanManager();
+		Utilisateur u=fbm.getUtilisateur(session.getAttribute("email"));
+		Groupe t = new Groupe();
+		t.setNom(this.nomgroupe);
+		t.setDescription(this.description);
+		System.out.println(this.nomgroupe);
+		
+		//Utilisateur u = getContext().getUtilisateur();
+		this.uCourant = u;
+		//System.out.println("5555555555555555555555555555555555555  "+u.getPseudo()+"  222222222222222222");
+		//System.out.println(uCourant.getPseudo()+"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+		t.setCoordinateur(this.uCourant);
+		t.setNbMembres(1);
+		fbm.creergroupe(t);
+		
+		return new RedirectResolution("/groupe.jsp");	
+	}
+	
+	
+	
+	
+
+
+}

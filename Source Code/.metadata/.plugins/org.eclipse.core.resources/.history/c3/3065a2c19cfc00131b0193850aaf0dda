@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Telephasic</title>
+<meta charset="utf-8">
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600" rel="stylesheet" type="text/css">
+<!--[if lte IE 8]>
+<script src="js/html5shiv.js">
+<![endif]-->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.dropotron.js"></script>
+<script src="js/skel.min.js"></script>
+<script src="js/skel-panels.min.js"></script>
+<script src="js/init.js"></script>
+
+<link rel="stylesheet" href="css/skel-noscript.css" type="text/css"/>
+<link rel="stylesheet" href="css/style1.css" type="text/css"/>
+<link rel="stylesheet" href="css/style-n1.css" type="text/css"/>
+
+</head>
+<body class="homepage">
+<div id="header-wrapper">
+  <div id="header" class="container">
+   <h1 id="logo"><a href="profile.jsp">PROFILE</a></h1>
+    <nav id="nav">
+      <ul>
+        <li> <a href="">Dropdown</a>
+          <ul>
+            <li><a href="#">choix 1</a></li>
+            <li><a href="#">choix 2</a></li>
+            <li><a href="#">choix 3</a></li>
+            <li> <span>choix 4</span>
+              <ul>
+                <li><a href="#">Lorem ipsum dolor</a></li>
+                <li><a href="#">Phasellus consequat</a></li>
+                <li><a href="#">Magna phasellus</a></li>
+                <li><a href="#">Etiam dolore nisl</a></li>
+              </ul>
+            </li>
+            <li><a href="#">choix 5</a></li>
+          </ul>
+        </li>
+        <li><a href="forum_accueil.jsp">Forum</a></li>
+        <li class="break"><a href="upload.jsp">GL DRIVE</a></li>
+        <li><a href="chat.jsp">LIVE CHAT</a></li>
+      </ul>
+    </nav>
+  </div>
+  <section id="hero" class="container">
+    <header>
+    </header>
+     <form method="post" action="groupeindiv.jsp" name="productForm" style="background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.15);border-style: none solid solid;border-width: 1px 1px 1px;
+border-color: -moz-use-text-color rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.75);color: #FFF;display: inline-block;transition: color 0.25s ease-in-out 0s, border-color 0.25s ease-in-out 0s, background-color 0.25s ease-in-out 0s;
+text-decoration: none;
+border-radius: 0.35em;
+padding: 0.8em 2em;box-sizing: border-box;">
+    <select name="colour" onchange="document.productForm.submit();">
+        <option value="dropdown">Pls select one
+        <option value="apple">Apple
+        <option value="oragne">Orange
+        <option value="grapes">Grapes
+    </select>
+    <input type="hidden" name="dropdown" id="dropdown">
+    <input type="submit" value="click" name="dropdown" id="dropdown">
+    <form>
+    <%
+        String colour = request.getParameter("colour");
+        out.println(colour);
+    %>
+    
+    <p>Veuillez choixir le mode d'apprentissage<br>
+      que vous voulez pratiquer.</p>
+    <ul class="actions">
+      <li><a href="groupeindiv.jsp" class="button">Apprentissage individuel</a></li><li><a href="groupecoll.jsp" class="button">Apprentissage collaboratif</a></li>
+    </ul>
+  </section>
+</div>
+
+
+  
+</div>
+</body>
+</html>

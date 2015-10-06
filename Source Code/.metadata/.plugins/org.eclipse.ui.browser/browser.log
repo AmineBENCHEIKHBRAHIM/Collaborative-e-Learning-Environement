@@ -1,0 +1,31 @@
+
+mai 12, 2014 14:57:27.47 NEW SESSION
+mai 12, 2014 14:57:27.47 NOTE: child process received `Goodbye', closing down
+mai 12, 2014 14:57:27.50 [3108] WARNING: pipe error: 109: file c:/builds/moz2_slave/rel-m-rel-w32_bld-000000000000/build/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 310
+
+mai 18, 2014 10:19:23.63 NEW SESSION
+mai 18, 2014 10:19:23.63 *************************
+mai 18, 2014 10:19:23.64 A coding exception was thrown and uncaught in a Task.
+mai 18, 2014 10:19:23.65 
+mai 18, 2014 10:19:23.65 Full message: TypeError: OS is null
+mai 18, 2014 10:19:23.66 Full stack: exports.IO.writeToFile/<@resource://gre/modules/XPIProvider.jsm -> jar:file:///C:/Users/Amine/AppData/Roaming/Mozilla/Firefox/Profiles/chgo20zm.Utilisateur%20par%20d%C3%A9faut/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/bootstrap.js -> jar:file:///C:/Users/Amine/AppData/Roaming/Mozilla/Firefox/Profiles/chgo20zm.Utilisateur%20par%20d%C3%A9faut/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/lib/io.js:248
+mai 18, 2014 10:19:23.67 TaskImpl_run@resource://gre/modules/Task.jsm:233
+mai 18, 2014 10:19:23.68 Handler.prototype.process@resource://gre/modules/Promise.jsm:767
+mai 18, 2014 10:19:23.68 this.PromiseWalker.walkerLoop@resource://gre/modules/Promise.jsm:531
+mai 18, 2014 10:19:23.70 
+mai 18, 2014 10:19:23.70 *************************
+
+juin 15, 2014 01:01:01.79 NEW SESSION
+juin 15, 2014 01:01:01.80 console.error: 
+juin 15, 2014 01:01:01.82   Message: Error: SessionFile is closed
+juin 15, 2014 01:01:01.83   Stack:
+juin 15, 2014 01:01:01.83     SessionFileInternal.write@resource://app/modules/sessionstore/SessionFile.jsm:194
+juin 15, 2014 01:01:01.83 this.SessionFile.write@resource://app/modules/sessionstore/SessionFile.jsm:62
+juin 15, 2014 01:01:01.84 SessionSaverInternal._writeState@resource://app/modules/sessionstore/SessionSaver.jsm:268
+juin 15, 2014 01:01:01.96 SessionSaverInternal._saveState@resource://app/modules/sessionstore/SessionSaver.jsm:225
+juin 15, 2014 01:01:01.96 SessionSaverInternal.run@resource://app/modules/sessionstore/SessionSaver.jsm:135
+juin 15, 2014 01:01:01.96 this.SessionSaver<.run@resource://app/modules/sessionstore/SessionSaver.jsm:78
+juin 15, 2014 01:01:01.97 ssi_uninit@resource:///modules/sessionstore/SessionStore.jsm:528
+juin 15, 2014 01:01:01.97 ssi_onQuitApplication@resource:///modules/sessionstore/SessionStore.jsm:1158
+juin 15, 2014 01:01:01.97 ssi_observe@resource:///modules/sessionstore/SessionStore.jsm:559
+juin 15, 2014 01:01:01.98 

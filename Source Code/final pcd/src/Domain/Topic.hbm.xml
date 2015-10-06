@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 04 mai 2014 15:55:17 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping package="Domain">
+    <class name="Topic" table="topic">
+        <id name="idTopic" type="java.lang.Integer">
+            <column name="idTopic" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="utilisateur" class="Utilisateur" fetch="select">
+            <column name="Utilisateur_idUtilisateur" not-null="true" />
+        </many-to-one>
+        <property name="nom" type="string">
+            <column name="nom" length="55" />
+        </property>
+        <property name="nbVues" type="java.lang.Integer">
+            <column name="nbVues" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200" />
+        </property>
+        <set name="messages" inverse="true" lazy="false" table="message" fetch="select">
+            <key>
+                <column name="Topic_idTopic" not-null="true" />
+            </key>
+            <one-to-many class="Message" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,180 @@
+
+.body{ 
+	background:#FFFFCC;
+	font-size: 12px; 
+}
+
+#conteneur{
+	
+	width:100%;
+	background-color: #D0F5A9;
+}
+
+
+#header{
+       background-color:#FFFFCC;
+       width:100%;
+       height:75px;
+       text-align: center;
+}
+
+	
+#center{
+		height:450px;
+		background-color: #D0F5A9;
+}
+
+#footer{
+	   background-color:#FFFFCC;
+       width:100%;
+       clear:both;
+}
+
+
+.tab{
+border:2px solid #800412;
+border-collapse:collapse;
+width:75%;
+}
+
+.tab_titre{
+font-variant:small-caps;
+font-weight:800;
+}
+
+.tab td{
+border:1px solid #800412;
+}
+
+.messParents{
+	
+	margin-left:25%;	
+}
+
+.listemessFils{
+	background:transparent url(/Style/separation.png) repeat-x; 
+	margin-left:5%;	
+	
+}
+
+
+.paragraphe{
+	width:75%;
+	background:#B0CC99;
+	border:1px solid #6a3c2b;
+	margin:10px;
+}
+
+.paragraphe div.paragraphe_main{
+padding:0px 6px;
+background:#FFFFCC;
+}
+
+
+.paragraphe div.paragraphe_titre{
+	text-align:left;
+	background:#EFECCA;
+	color:maroon;
+	height:18px;
+	line-height:18px;
+	padding:0px 6px;
+	font-weight:700;
+}
+
+
+.paragraphe_fils{
+	width:50%;
+	background:#B0CC99;
+	border:1px solid #6a3c2b;
+	margin:10px;
+}
+
+.paragraphe_fils div.paragraphe_fils_main{
+padding:0px 6px;
+background:#FFFFCC;
+}
+
+
+.paragraphe_fils div.paragraphe_fils_titre{
+	text-align:left;
+	background:#EFECCA;
+	color:maroon;
+	height:18px;
+	line-height:18px;
+	padding:0px 6px;
+	font-weight:700;
+}
+
+
+
+
+
+/* Balises génériques */
+
+body,div,table,tr,td,h1,h2,h3,a,p {
+font-family:arial, Helvetica, sans-serif;
+}
+body,div,table,tr,td {
+line-height:1.5em;
+font-size:11px;
+}
+h2 {
+text-align:center;
+color:#465044;
+}
+h3 {
+color:#465044;
+}
+
+h4{
+color:#465044;
+border-bottom-width:thin;
+border-bottom-color:#990066;
+border-bottom-style:dotted;
+}
+
+
+a
+{
+color:#800412; /* #000000 */
+text-decoration:none;
+font-family:Arial, Helvetica, sans-serif;
+font-size:12px;
+
+}
+a:hover
+{
+color:#465044; /*#999999;*/
+text-decoration:underline;
+font-family:Arial, Helvetica, sans-serif;
+}
+a.red
+{
+color:red;
+text-decoration:none;
+font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+
+}
+a.red:hover
+{
+color:#999999;
+text-decoration:underline;
+font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+
+}
+
+p{
+padding:0px 6px;
+}
+
+
+
+/**
+** Classes couleur tableau
+*/
+.TR_Normal { background-color: transparent;cursor:pointer;}
+.TR_Survol { background-color: #666666; color:#FFFFFF; cursor:pointer;}
+.TR_Clique { background-color: #FFFFFF; color:#000000; font-weight: bolder;cursor:pointer;}
+/* ---- end -- */

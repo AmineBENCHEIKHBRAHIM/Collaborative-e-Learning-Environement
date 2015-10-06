@@ -1,0 +1,65 @@
+package com.sdzee.servlets;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import classes.DatabaseConnection;
+
+/**
+ * Servlet implementation class DisplayRepProbIndiv
+ */
+@WebServlet("/DisplayRepProbIndiv")
+public class DisplayRepProbIndiv extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DisplayRepProbIndiv() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String idprob = request.getParameter("idprob");
+		System.out.print(idprob);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		System.out.print(request.getParameter("idprob"));
+		try
+		{
+			
+			query = "select * from repprobindiv where idprob="+request.getParameter("idprob");
+			dbconn = new DatabaseConnection();
+			conn = dbconn.setConnection();
+			res = dbconn.getResult(query, conn);
+			
+			request.setAttribute("problist",res);
+			String idgrp = request.getParameter("idgrp");
+			String co = request.getParameter("co");
+			request.setAttribute("idgrp",idgrp);
+			request.setAttribute("co",co);
+				RequestDispatcher rd = request.getRequestDispatcher("/groupeindiv.jsp");
+				rd.forward(request, response);
+			System.out.print("i passed by display prob indiv");
+			   // response.sendRedirect("index2.jsp");
+		}
+		catch(Exception e){}
+	}
+
+}

@@ -1,0 +1,80 @@
+package com.sdzee.servlets;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import classes.DatabaseConnection;
+
+/**
+ * Servlet implementation class AjoutRepColl
+ */
+@WebServlet("/AjoutRepColl")
+public class AjoutRepColl extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	Connection conn;
+	Statement stmt;
+	ResultSet res;
+	String coordinateur,nom,description,query,query2;
+	
+	DatabaseConnection dbconn;   
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AjoutRepColl() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		dbconn = new DatabaseConnection();
+		conn = dbconn.setConnection();
+		String suggestion = request.getParameter("suggestion");
+		String directive = request.getParameter("directive");
+		String moyen = request.getParameter("moyen");
+		String argument = request.getParameter("argument");
+		int repondeur = Integer.parseInt(request.getParameter("iduser"));
+		int idprob = Integer.parseInt(request.getParameter("idprob"));
+		System.out.print(suggestion);
+		System.out.print(directive);
+		System.out.print(moyen);
+		System.out.print(argument);
+		System.out.print(repondeur);
+		System.out.print(idprob);
+			//System.out.print(interests[j]);
+			try {
+				stmt = conn.createStatement();
+				query = "insert into repprobcoll (idprob,idrepondeur,argument,suggestion,moyen,directive) values('"+idprob+"','"+repondeur+"','"+argument+"','"+suggestion+"','"+moyen+"','"+directive+"')";
+				int i = stmt.executeUpdate(query);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//interests[i]
+		
+		
+		
+		RequestDispatcher rd = request.getRequestDispatcher("DisplayRepProbColl");
+		rd.forward(request,response);
+	}
+
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="Domain">
+    <class name="Groupe" table="groupes" >
+        <id name="idGroupe" type="int">
+            <column name="idGroupe" />
+            <generator class="identity" />
+        </id>
+        
+       <many-to-one name="coordinateur" class="Utilisateur" fetch="select">
+            <column name="coordinateur"  />
+        </many-to-one>
+        <property name="nom" type="string">
+            <column name="nom" length="30" />
+        </property>
+        <property name="nbMembres" type="int">
+            <column name="nbmembres" length="7" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200"  />
+        </property>
+       
+    </class>
+</hibernate-mapping>

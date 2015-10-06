@@ -1,0 +1,29 @@
+
+		.rating {
+			width: 226px!important;
+			margin: 0 auto 1em!important;
+			font-size: 45px!important;
+			overflow:hidden!important;
+		}
+		.rating a {
+			float:right!important;
+			color: #aaa!important;
+			text-decoration: none!important;
+			-webkit-transition: color .4s!important;
+			-moz-transition: color .4s!important;
+			-o-transition: color .4s!important;
+			transition: color .4s!important;
+		}
+		.rating a:hover,
+		.rating a:hover ~ a,
+		.rating a:focus,
+		.rating a:focus ~ a		{
+			color: orange!important;
+			cursor: pointer!important;
+		}
+		.rating2 {
+			direction: rtl!important;
+		}
+		.rating2 a {
+			float:none!important
+		}

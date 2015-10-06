@@ -1,0 +1,135 @@
+<%@page import="DAO.ForumBeanManager"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Telephasic</title>
+<meta charset="utf-8">
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600" rel="stylesheet" type="text/css">
+<!--[if lte IE 8]>
+<script src="js/html5shiv.js">
+<![endif]-->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.dropotron.js"></script>
+<script src="js/skel.min.js"></script>
+<script src="js/skel-panels.min.js"></script>
+<script src="js/init.js"></script>
+
+<link rel="stylesheet" href="css/skel-noscript.css" type="text/css"/>
+<link rel="stylesheet" href="css/style1.css" type="text/css"/>
+<link rel="stylesheet" href="css/style-n1.css" type="text/css"/>
+
+</head>
+<body class="homepage">
+<div id="header-wrapper">
+  <div id="header" class="container">
+   <h1 id="logo"><a href="profile.jsp">PROFILE</a></h1>
+    <nav id="nav">
+      <ul>
+        <li> <a href="">Dropdown</a>
+          <ul>
+            <li><a href="#">choix 1</a></li>
+            <li><a href="#">choix 2</a></li>
+            <li><a href="#">choix 3</a></li>
+            <li> <span>choix 4</span>
+              <ul>
+                <li><a href="#">Lorem ipsum dolor</a></li>
+                <li><a href="#">Phasellus consequat</a></li>
+                <li><a href="#">Magna phasellus</a></li>
+                <li><a href="#">Etiam dolore nisl</a></li>
+              </ul>
+            </li>
+            <li><a href="#">choix 5</a></li>
+          </ul>
+        </li>
+        <li><a href="forum_accueil.jsp">Forum</a></li>
+        <li class="break"><a href="upload.jsp">GL DRIVE</a></li>
+        <li><a href="chat.jsp">LIVE CHAT</a></li>
+      </ul>
+    </nav>
+  </div>
+  <section id="hero" class="container">
+    <header>
+    </header>
+    <h2>Problèmes posés</h2>
+    <% 
+	ResultSet resultat = (java.sql.ResultSet)request.getAttribute("problist");
+	//response.sendRedirect("index2.jsp");
+	while(resultat.next()){
+		int idposeur = resultat.getInt(2);
+		
+		String objectif = resultat.getString(4);
+		String tache = resultat.getString(5);
+		String artefact = resultat.getString(6);
+		String contrainte = resultat.getString(7);
+		int row = resultat.getRow();
+		//request.setAttribute("path", path);
+		//request.setAttribute("nomfile", nom);
+		
+		%>
+        <div style="background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.15);border-style: none solid solid;border-width: 0px 1px 1px;border: 1px solid #C2C7CC;
+border-color: -moz-use-text-color rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.5);color: #FFF;display: inline-block;transition: color 0.25s ease-in-out 0s, border-color 0.25s ease-in-out 0s, background-color 0.25s ease-in-out 0s;
+text-decoration: none;
+border-radius: 0.35em;
+padding: 0.8em 2em;box-sizing: border-box;">
+
+
+
+
+</div>
+        <%} %>
+    
+    
+    
+     <form method="post" action="AjoutProbIndiv" name="productForm" style="background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.15);border-style: none solid solid;border-width: 0px 1px 1px;border: 1px solid #C2C7CC;
+border-color: -moz-use-text-color rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.5);color: #FFF;display: inline-block;transition: color 0.25s ease-in-out 0s, border-color 0.25s ease-in-out 0s, background-color 0.25s ease-in-out 0s;
+text-decoration: none;
+border-radius: 0.35em;
+padding: 0.8em 2em;box-sizing: border-box;">
+    <select name="objectif">
+        <option value="dropdown">Veuillez selectionner un objectif
+        <option value="Analyse">Analyse
+        <option value="Conception">Conception
+        <option value="Réalisation">Réalisation
+        <option value="Tests">Tests
+    </select>
+    <select name="tache">
+        <option value="dropdown">Veuillez selectionner une tâche
+        <option value="Tâche d'Analyse - Fondamentale">Tâche d'Analyse - Fondamentale
+        <option value="Tâche d'Analyse - Expression des besoins">Tâche d'Analyse - Expression des besoins
+        <option value="Tâche d'Analyse - Spécification">Tâche d'Analyse - Spécification
+        <option value="Tâche de Conception - Fondamentale">Tâche de Conception - Fondamentale
+        <option value="Tâche de Conception - Conception Architecturale">Tâche de Conception - Conception Architecturale
+        <option value="Tâche de Conception - Conception détaillée">Tâche de Conception - Conception détaillée
+        <option value="Tâche de Réalisation - Fondamentale">Tâche de Réalisation - Fondamentale
+        <option value="Tâche de Réalisation - Choix du langage">Tâche de Réalisation - Choix du langage
+        <option value="Tâche de Tests - Fondamentale">Tâche de Tests - Fondamentale
+        <option value="Tâche de Tests - Technique du test">Tâche de Tests - Technique du test
+    </select>
+    <select name="artefact">
+        <option value="dropdown">Veuillez selectionner un artefact
+        <option value="Definition">Definition
+        <option value="Technique">Technique
+    </select>
+    <select name="contrainte">
+        <option value="dropdown">Veuillez selectionner une contrainte
+        <option value="Référence">Référence
+        <option value="Moyen">Moyen
+    </select>
+    <br>
+    <input type="hidden" name="dropdown" id="dropdown">
+    <input type="hidden" name="idgrp" id="idgrp" value="<%=request.getAttribute("idgrp")%>">
+    <input type="hidden" name="co" id="co" value="<%=request.getAttribute("co")%>">
+    <input type="hidden" name="iduser" id="iduser" value="<%=session.getAttribute("iduser")%>">
+    <input type="submit" value="Poser problème" name="dropdown" id="dropdown" class ="button">
+    </form>
+    
+  </section>
+</div>
+
+
+  
+</div>
+</body>
+</html>

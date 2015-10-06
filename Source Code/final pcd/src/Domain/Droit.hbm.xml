@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 mai 2010 15:55:17 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping package="Domain" >
+    <class name="Droit" table="droit">
+        <id name="idDroit" type="java.lang.Integer">
+            <column name="idDroit" />
+            <generator class="identity" />
+        </id>
+        <property name="droit" type="string">
+            <column name="droit" length="25" />
+        </property>
+        <set name="utilisateurs" inverse="true" lazy="false" table="utilisateur" fetch="select">
+            <key>
+                <column name="Droit_idDroit" not-null="true" />
+            </key>
+            <one-to-many class="Utilisateur" />
+        </set>
+    </class>
+</hibernate-mapping>

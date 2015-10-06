@@ -1,0 +1,298 @@
+<%@page import="DAO.ForumBeanManager"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@page import="Domain.*"%>   
+ <%@page import="DAO.ForumBeanManager"%> 
+ <%@page import="java.util.*"%>
+ <%@page import="java.io.IOException"%>
+ <%@page import="java.sql.Connection"%>
+ <%@page import="java.sql.ResultSet"%>
+ <%@page import="java.sql.Statement"%>
+ <%@page import="classes.DatabaseConnection"%>
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Telephasic</title>
+<meta charset="utf-8">
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600" rel="stylesheet" type="text/css">
+<!--[if lte IE 8]>
+<script src="js/html5shiv.js">
+<![endif]-->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.dropotron.js"></script>
+<script src="js/skel.min.js"></script>
+<script src="js/skel-panels.min.js"></script>
+<script src="js/init.js"></script>
+
+<link rel="stylesheet" href="css/skel-noscript.css" type="text/css"/>
+<link rel="stylesheet" href="css/style1.css" type="text/css"/>
+<link rel="stylesheet" href="css/style-n1.css" type="text/css"/>
+<link rel="stylesheet" href="css/stylerate.css"  type="text/css" />
+</head>
+<body class="homepage">
+<div id="header-wrapper">
+  <div id="header" class="container">
+   <h1 id="logo"><a href="profile.jsp">PROFILE</a></h1>
+    <nav id="nav">
+      <ul>
+        <li> <a href="">Dropdown</a>
+          <ul>
+            <li><a href="#">choix 1</a></li>
+            <li><a href="#">choix 2</a></li>
+            <li><a href="#">choix 3</a></li>
+            <li> <span>choix 4</span>
+              <ul>
+                <li><a href="#">Lorem ipsum dolor</a></li>
+                <li><a href="#">Phasellus consequat</a></li>
+                <li><a href="#">Magna phasellus</a></li>
+                <li><a href="#">Etiam dolore nisl</a></li>
+              </ul>
+            </li>
+            <li><a href="#">choix 5</a></li>
+          </ul>
+        </li>
+        <li><a href="forum_accueil.jsp">Forum</a></li>
+        <li class="break"><a href="upload.jsp">GL DRIVE</a></li>
+        <li><a href="chat.jsp">LIVE CHAT</a></li>
+      </ul>
+    </nav>
+  </div>
+  <section id="hero" class="container">
+    <header>
+    </header>
+    <%String n = request.getParameter("n");
+    int nn=Integer.parseInt(n);
+    %>
+    <h2>Problème <%=request.getParameter("idprob") %> <%if (nn==1 & nn not null)
+{		
+%>
+<img src="images/demo/tick1ff.png" alt="" />
+<%}%></h2>
+    <br><br>
+    <% 
+    int idprob = Integer.parseInt(request.getParameter("idprob"));
+    String objectif = request.getParameter("o");
+    String tache = request.getParameter("t");
+    String artefact = request.getParameter("a");
+    String contrainte = request.getParameter("c");
+    String poseur = request.getParameter("poseur");
+    
+    %>
+    <div style="background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.15);border-style: none solid solid;border-width: 0px 1px 1px;border: 1px solid #C2C7CC;
+					border-color: -moz-use-text-color rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.5);color: #FFF;display: inline-block;transition: color 0.25s ease-in-out 0s, border-color 0.25s ease-in-out 0s, background-color 0.25s ease-in-out 0s;
+					text-decoration: none;
+					border-radius: 0.35em;
+					padding: 0.8em 2em;box-sizing: border-box;">
+					       Problème <%= idprob %> :</a> By <%=poseur %> <br>
+					       <strong>Domaine :</strong> Génie logiciel<br>
+					       <strong>Contexte :</strong> Apprentissage individuel<br>
+					       <strong>Objectif :</strong> <%= objectif %><br>
+					       <strong>Tache :</strong> <%= tache %><br>
+					       <strong>Artefact :</strong> <%= artefact %><br>
+					       <strong>Contrainte :</strong> <%= contrainte %> <br>
+					      
+					<br>
+
+
+					</div>
+    <br>
+    <hr>
+    <br>
+    
+    
+    
+    
+    
+    
+    <%
+    Connection conn;
+	Statement stmt;
+	ResultSet res;
+
+	String query;
+	
+	DatabaseConnection dbconn;
+	
+	try
+	{
+		
+		query = "select * from repprobindiv where idprob="+idprob;
+		dbconn = new DatabaseConnection();
+		conn = dbconn.setConnection();
+		res = dbconn.getResult(query, conn);
+		int i=0;
+		//response.sendRedirect("index2.jsp");
+		while(res.next()){
+			i++;
+			int idrep = res.getInt(1);
+			String ii = Integer.toString(i);
+			int idrepondeur = res.getInt(3);
+			ForumBeanManager fbm = new ForumBeanManager();
+			String repondeur = fbm.getuseerbyid(idrepondeur).getPseudo();
+			String argument = res.getString(4);
+			String suggestion = res.getString(5);
+			String moyen = res.getString(6);
+			String directive = res.getString(7);
+			int note = res.getInt(8);
+			
+			%><div style="background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.15);border-style: none solid solid;border-width: 0px 1px 1px;border: 1px solid #C2C7CC;
+					border-color: -moz-use-text-color rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.5);color: #FFF;display: inline-block;transition: color 0.25s ease-in-out 0s, border-color 0.25s ease-in-out 0s, background-color 0.25s ease-in-out 0s;
+					text-decoration: none;
+					border-radius: 0.35em;
+					padding: 0.8em 2em;box-sizing: border-box;">
+					       Reponse <%= i %> :</a> By <%=repondeur %> <br>
+					       <strong>Argument :</strong> <%= argument %><br>
+					       <strong>Suggestion :</strong> <%= suggestion %><br>
+					       <strong>Moyen :</strong> <%= moyen %> <br>
+					       <strong>Directive :</strong> <%= directive %><br>
+					<br>
+
+<p>Veuillez noter cette réponse:</p>
+
+	<div class="rating rating2"><!--
+		--><a href="#5" title="Give 5 stars">★</a><!--
+		--><a href="#4" title="Give 4 stars">★</a><!--
+		--><a href="#3" title="Give 3 stars">★</a><!--
+		--><a href="#2" title="Give 2 stars">★</a><!--
+		--><a href="#1" title="Give 1 star">★</a>
+	</div>
+	<script src="js/index.js"></script>
+
+
+
+
+
+
+
+<%if (note==1)
+{		
+%>
+<img src="images/demo/tick1ff.png" alt="" />
+<%}
+else {%>
+<form method="post" action="SolveProbIndiv">
+<input type="submit" value="Accepter la réponse" name="dropdown" id="dropdown" class ="button">
+<input type="hidden" name="idrep" value="<%=idrep %>">
+<input type="hidden" name="idprob" value="<%=idprob %>">
+</form>
+<%} %>
+
+
+					</div>
+					<br><br><%
+		
+	}
+	}
+		    
+			//RequestDispatcher rd = request.getRequestDispatcher("/download.jsp");
+			//rd.forward(request, response);
+		
+		   // response.sendRedirect("index2.jsp");
+	
+	catch(Exception e){}
+	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	%>
+    
+     <form method="post" action="AjoutRepIndiv" name="productForm" style="background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.15);border-style: none solid solid;border-width: 0px 1px 1px;border: 1px solid #C2C7CC;
+border-color: -moz-use-text-color rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.5);color: #FFF;display: inline-block;transition: color 0.25s ease-in-out 0s, border-color 0.25s ease-in-out 0s, background-color 0.25s ease-in-out 0s;
+text-decoration: none;
+border-radius: 0.35em;
+padding: 0.8em 2em;box-sizing: border-box;">
+    <select name="suggestion">
+        <option value="dropdown">Veuillez selectionner une suggestion
+        <option value="Definition">Définition
+        <option value="Technique">Technique
+    </select>
+   
+    <select name="directive">
+        <option value="dropdown">Veuillez selectionner une directive
+        <option value="Definition">Définition
+        <option value="Language UML">Language UML
+        <option value="Communication directe">Communication directe
+        <option value="Developpement incremental">Développement incrémental
+        <option value="Etude du existant">Etude de l'existant
+        <option value="Approche fonctionnelle">Approche fonctionnelle
+        <option value="Approche orientee objets">Approche orientée objets
+        <option value="Style architectural">Style architectural
+        <option value="Architecture UML">Architecture UML
+        <option value="Vue Statique">Vue Statique
+        <option value="Vue Dynamique">Vue Dynamique
+        <option value="Test Statique">Test Statique
+        <option value="Test Dynamique">Test Dynamique
+    </select>
+    
+    <select name="moyen">
+        <option value="dropdown">Veuillez selectionner un moyen
+        <option value="Documents de reference">Documents de référence
+        <option value="Diagramme Uses-Cases">Diagramme Uses-Cases
+        <option value="Observation">Observation
+        <option value="Questionnaire">Questionnaire
+        <option value="Interviews">Interviews
+        <option value="Prototypes">Prototypes
+        <option value="Comparaison">Comparaison
+        <option value="Diagramme de flux de donnees">Diagramme de flux de données
+        <option value="Diagrammes Etats-Transitions">Diagrammes Etats-Transitions
+        <option value="Modeles entites-relations">Modèles entités-relations
+        <option value="Diagramme Uses-Cases">Diagramme Uses-Cases
+        <option value="Diagramme de sequence">Diagramme de séquence
+        <option value="Diagramme Activites">Diagramme Activités
+        <option value="Architecture Pipeline">Architecture Pipeline
+        <option value="Referentiels de donnees">Référentiels de données
+        <option value="Architecture Client-Serveur">Architecture Client-Serveur
+        <option value="Architecture en couches">Architecture en couches
+        <option value="Architecture MVC">Architecture MVC
+        <option value="Architecture orientee services">Architecture orientée services
+        <option value="Les patrons de conception">Les patrons de conception
+        <option value="Diagramme de paquets">Diagramme de paquets
+        <option value="Diagramme de composants">Diagramme de composants
+        <option value="Diagramme de deploiement ">Diagramme de déploiement 
+        <option value="Diagramme combine">Diagramme combiné
+        <option value="Diagramme de classes">Diagramme de classes
+        <option value="Diagramme de structure composite">Diagramme de structure composite
+        <option value="Diagramme de sequence">Diagramme de séquence
+        <option value="Diagramme Etats-transitions">Diagramme Etats-transitions
+        <option value="Revue de code">Revue de code
+        <option value="Verifications formelle">Vérifications formelle
+        <option value="Test par classes equivalence">Test par classes d'équivalence
+        <option value="Tests aux limites">Tests aux limites
+        <option value="Tests combinatoires">Tests combinatoires
+        <option value="Graphe de controle">Graphe de contrôle
+    </select>
+    
+     <select name="argument">
+        <option value="dropdown">Veuillez selectionner un argument
+        <option value="Sommerville, 2007">Sommerville, 2007
+        <option value="Abran et al, 2004">Abran et al, 2004
+        <option value="Wongthongtham et al., 2009">Wongthongtham et al, 2009
+        <option value="Cours GL1 II2 ENSI">Cours GL1 II2 ENSI
+    </select>
+    <br>
+    <input type="hidden" name="dropdown" id="dropdown">
+    <input type="hidden" name="idgrp" id="idgrp" value="<%=request.getParameter("idgrp")%>">
+    <input type="hidden" name="co" id="co" value="<%=request.getParameter("co")%>">
+    <input type="hidden" name="iduser" id="iduser" value="<%=request.getParameter("user")%>">
+    <input type="hidden" name="idprob" id="idprob" value="<%=idprob %>">
+    <input type="submit" value="Répondre" name="dropdown" id="dropdown" class ="button">
+    </form>
+    
+  </section>
+</div>
+
+
+  
+</div>
+</body>
+</html>

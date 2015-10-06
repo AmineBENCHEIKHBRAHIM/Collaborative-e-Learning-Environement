@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 mai 2010 15:55:17 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping package="Domain">
+    <class name="Message" table="message" >
+        <composite-id name="id" class="MessageId">
+            <key-property name="idMessage" type="int">
+                <column name="idMessage" />
+            </key-property>
+            <key-many-to-one name="topic" class="Topic">
+                <column name="Topic_idTopic" />
+            </key-many-to-one>
+        </composite-id>
+        <many-to-one name="utilisateur" class="Utilisateur" fetch="select">
+            <column name="Utilisateur_idUtilisateur" not-null="true" />
+        </many-to-one>
+        <property name="titre" type="string">
+            <column name="titre" length="55" not-null="true" />
+        </property>
+        <property name="message" type="string">
+            <column name="message" length="65535" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" not-null="true" />
+        </property>
+        <property name="parent" type="int">
+            <column name="parent" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
